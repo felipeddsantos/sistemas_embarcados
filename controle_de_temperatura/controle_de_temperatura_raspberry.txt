@@ -1,0 +1,26 @@
+//Sistemas Embarcados - Controle de temperatura com Raspberry  
+//Felipe Daniel Dias dos Santos - 11711ECP004
+//Engenharia de Computação - Faculdade de Engenharia Elétrica - Universidade Federal de Uberlândia
+
+import serial
+import RPi.GPIO as GPIO
+
+conn = serial.Serial("/dev/ttyACM0", 9600)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(18, GPIO.OUT)
+
+while 1:
+
+	temp = conn.readline()
+	print "Temperatura: " + temp
+
+    if(int(temp) > 24):
+    
+        print "Cooler ligado"
+        GPIO.output(18, 1)
+        
+    else:
+    
+        print "Cooler desligado"
+        GPIO.output(18, 0)

@@ -1,0 +1,20 @@
+//Sistemas Embarcados - Leitura de temperatura com Arduino  
+//Felipe Daniel Dias dos Santos - 11711ECP004
+//Engenharia de Computação - Faculdade de Engenharia Elétrica - Universidade Federal de Uberlândia
+
+#include <Thermistor.h>
+
+Thermistor conn(2);
+
+void setup(){
+	
+	Serial.begin(9600);
+	delay(1000);
+}
+
+void loop(){
+  
+	int temp = conn.getTemp();
+	Serial.println(String(temp));
+	delay(1000);
+}
